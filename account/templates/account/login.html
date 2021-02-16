@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}
+    ورود
+{% endblock %}
+
+{% block content %}
+    <form class="" action="{% url 'accounts:login' %}" method="post">
+        {{ form }}
+        {% csrf_token %}
+        {% if request.GET.next %}
+            <input type="hidden" name="next" value="{{ request.GET.next }}">
+        {% endif %}
+        <input value="Login" type="submit">
+    </form>
+{% endblock %}

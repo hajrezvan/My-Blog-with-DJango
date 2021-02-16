@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block title %}
+            Title
+        {% endblock %}
+    </title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+<h2>
+    <a href="{% url 'articles:list' %}">
+        مقالات
+    </a>
+    و
+    <a href="http://127.0.0.1:8000/">
+        خانه
+    </a>
+</h2>
+
+<nav>
+    <ul>
+        {% csrf_token %}
+        {% if user.is_authenticated %}
+            <li>
+                <form class="logout-link" action="{% url 'accounts:logout' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit">
+                        خروج
+                    </button>
+                </form>
+            </li>
+            <li>
+                <a href="{% url 'articles:create' %}">
+                    افزودن مقاله جدید
+                </a>
+            </li>
+        {% else %}
+            <li>
+                <a href="{% url 'accounts:signup' %}">
+                    ثبت نام
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'accounts:login' %}">
+                    ورود
+                </a>
+            </li>
+        {% endif %}
+    </ul>
+</nav>
+
+<div class=" wrapper">
+    {% block content %}
+        {#  HTML Content is here.  #}
+    {% endblock %}
+</div>
+</body>
+</html>

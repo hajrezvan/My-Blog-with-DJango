@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    ثبت نام
+{% endblock %}
+
+{% block content %}
+    <h1>
+        ثبت نام
+    </h1>
+
+    <form class="site-form" action="{% url 'accounts:signup' %}" method="post">
+        {{ form }}
+        {% csrf_token %}
+        <label>
+            <input type="submit" value="submit">
+        </label>
+    </form>
+{% endblock %}

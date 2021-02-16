@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    اضافه کردن مقاله
+{% endblock %}
+
+{% block content %}
+    {% comment %}    <h1>
+        ایجاد فرم جدید
+    </h1>{% endcomment %}
+
+    <form class="site-form" action="{% url 'articles:create' %}" method="post" enctype="multipart/form-data">
+        {{ form }}
+        {% csrf_token %}
+        <input type="submit" name="" value="create">
+    </form>
+    <script src="{% static 'slugify.js' %}"></script>
+{% endblock %}

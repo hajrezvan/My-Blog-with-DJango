@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}
+    {#  Worst way to adding CSS files is here.  #}
+    {#  <link rel="stylesheet" href="/static/style.css">    #}
+    مقالات ما
+{% endblock %}
+
+{% block content %}
+    <h1>آخرین مقالات ما</h1>
+    {% for article_item in articles %}
+        <div class="article">
+            <h2>
+                <a href="{% url 'articles:detail' slug=article_item.slug %}">
+                    {{ article_item.title }}
+                </a>
+            </h2>
+            <p class="snippet">
+                {{ article_item.snippet }}
+            </p>
+            <p class="author">
+                نوشته شده توسط {{ article_item.author }}
+            </p>
+            <p class="date">
+                {{ article_item.date }}
+            </p>
+        </div>
+    {% endfor %}
+{% endblock %}
